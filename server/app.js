@@ -1,8 +1,9 @@
 var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
-// var passport = require('');
+var passport = require('../strategies/user-local.js');
 var session = require('express-session');
+
 
 app.use(bodyParser.urlencoded({extended: true}));
 
@@ -21,6 +22,8 @@ app.use(passport.session());
 // require routers
 var index = require('../routes/index');
 var register = require('../routes/register');
+
+app.use(express.static('public'));
 
 //register and login routes
 app.use('/register', register);
