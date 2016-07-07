@@ -8,20 +8,23 @@
     <div>
       <h1>Login</h1>
     </div>
-    <form  action="/" method="post">
-      <div>
-        <label for="username">Username:</label>
-        <input type="text" name="username" id="username" value="">
-      </div>
-      <div>
-        <label for="password">Password:</label>
-        <input type="password" name="password" id="password" value="">
-      </div>
-      <div>
-        <input type="submit"  value="Log In">
-        <a href="/register">Register</a>
-        <!-- is register correct? should it be login? -->
-      </div>
-    </form>
+    <script src="https://cdn.auth0.com/js/lock-9.1.min.js"></script>
+<script type="text/javascript">
+
+  var lock = new Auth0Lock('WOUHSPTKQhRtfWscwqIp4G8ENRIXPFAL', 'sophiabenson.auth0.com');
+
+
+  function signin() {
+    lock.show({
+        callbackURL: 'http://yourUrl/callback'
+      , responseType: 'code'
+      , authParams: {
+        scope: 'openid email'  // Learn about scopes: https://auth0.com/docs/scopes
+      }
+    });
+  }
+</script>
+<button onclick="window.signin();">Login</button>
+  
   </body>
 </html>
