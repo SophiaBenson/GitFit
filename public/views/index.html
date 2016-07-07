@@ -16,7 +16,7 @@
 
   function signin() {
     lock.show({
-        callbackURL: 'http://yourUrl/callback'
+        callbackURL: 'http://localhost:3000/main/'
       , responseType: 'code'
       , authParams: {
         scope: 'openid email'  // Learn about scopes: https://auth0.com/docs/scopes
@@ -25,6 +25,6 @@
   }
 </script>
 <button onclick="window.signin();">Login</button>
-  
+
   </body>
 </html>
