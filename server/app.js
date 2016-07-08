@@ -30,7 +30,7 @@ app.get('/callback',
       user: req.user
 
     });
-    
+
   });
 
 //End of Auth0 google account authentication.
@@ -62,6 +62,7 @@ app.get('/main', function (req, res) {
   console.log('In main schedule page');
   res.sendFile(path.resolve('public/views/main.html'));
 });
+
 //spin up server
 app.listen(3000, function () {
   console.log("server is listening on port 3000");

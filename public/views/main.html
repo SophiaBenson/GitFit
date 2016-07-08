@@ -4,22 +4,46 @@
     <meta charset="utf-8">
     <title>GitFit Schedule</title>
     <script src="../vendors/angular.min.js" charset="utf-8"></script>
+    <script src="../vendors/angular-material.js" charset="utf-8"></script>
+
     <script src="../vendors/daypilot-all.min.js" charset="utf-8"></script>
     <script src="../scripts/script.js" charset="utf-8"></script>
+    <link rel="stylesheet" href="../styles/ltop.css" media="screen" title="no title" charset="utf-8">
     <script>
 
 </script>
   </head>
   <body>
     GitFit!
-    <form action="backend_events.php" method="post">
 
 
-    <div ng-controller="DemoCtrl">
 
+    <div ng-controller="CalendarCtrl">
+      <daypilot-calendar ng-click="showTabDialog($event)" id="dp" config="config" events="events" >Calender here</daypilot-calendar>
+<div ng-controller="AppCtrl">
+  New event:
+      <button ng-click="add()">Add</button>
+      <md-button class="md-primary md-raised" ng-click="showTabDialog($event)" >
+      Tab Dialog
+    </md-button>
+</div>
+<div>
+      First event:
+      <button ng-click="move()">Move</button>
+      <button ng-click="rename()">Rename</button>
+  </div>
+  <div>
+      Object:
+      <button ng-click="message()">Show Message</button>
+  </div>
+  <div>
+      Events array (debug):
+      <div ng-repeat="item in events">
+          {{item}}
+      </div>
 
-    <daypilot-calendar id="week" daypilot-config="weekConfig" daypilot-events="events" >Calender here</daypilot-calendar>
+  </div>
     </div>
-      </form>
+
   </body>
 </html>
