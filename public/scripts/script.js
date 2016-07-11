@@ -2,12 +2,15 @@ console.log("script is hur");
 //store the event calendar object
 // var dp = $scope.week;
 
-var app = angular.module('main', ['ngMaterial','daypilot']).controller('CalendarCtrl', function($scope, $mdDialog, $mdMedia) {
+var app = angular.module('main', ['daypilot']);
+app.controller('CalendarCtrl', function($scope) {
 //set up events
       $scope.events = [
         {
-              start: new DayPilot.Date("2016-07-08T10:00:00"),
-              end: new DayPilot.Date("2016-07-08T14:00:00"),
+              // start: new DayPilot.Date("2016-07-08T10:00:00"),
+              start: new DayPilot.Date.today("T14:00:00"),
+              // end: new DayPilot.Date("2016-07-08T14:00:00"),
+              end: new DayPilot.Date.today("T16:00:00"),
               id: DayPilot.guid(),
               text: "First Event"
         }
@@ -20,8 +23,10 @@ var app = angular.module('main', ['ngMaterial','daypilot']).controller('Calendar
       $scope.add = function() {
           $scope.events.push(
                   {
-                      start: new DayPilot.Date("2016-07-08T10:00:00"),
-                      end: new DayPilot.Date("2016-07-08T12:00:00"),
+                      start: new DayPilot.Date("2016-07-11T10:00:00"),
+                      // start: new DayPilot.Date.today("T12:00:00"),
+                      end: new DayPilot.Date("2016-07-11T12:00:00"),
+                      // end: new DayPilot.Date.today("T14:00:00"),//find way to include time in today
                       id: DayPilot.guid(),
                       text: "Simple Event"
                   }
@@ -55,10 +60,45 @@ var app = angular.module('main', ['ngMaterial','daypilot']).controller('Calendar
           $scope.dp.message("Hi");
       };
 
+      // var modal = new DayPilot.Modal();
+      // modal.showHtml("<h1>Hello</h1>");
+      // editEvent();
 
 });//end DemoCtrl controller
+// var app = angular.module('Modal', []);
 
-// var app = angular.module('main', ['ngMaterial', 'daypilot']).controller('AppCtrl',['$scope', '$mdDialog', '$mdMedia', function($scope, $mdDialog, $mdMedia) {
+app.directive('modalDialog', function() {
+  return {
+    restrict: 'E',
+    scope: {
+      show: '='
+    },
+    replace: true, // Replace with the template below
+    transclude: true, // we want to insert custom content inside the directive
+    link: function(scope, element, attrs) {
+      scope.dialogStyle = {};
+      if (attrs.width)
+        scope.dialogStyle.width = attrs.width;
+      if (attrs.height)
+        scope.dialogStyle.height = attrs.height;
+      scope.hideModal = function() {
+        scope.show = false;
+      };
+    },
+    template: "<div class='ng-modal' ng-show='show'><div class='ng-modal-overlay' ng-click='hideModal()'></div><div class='ng-modal-dialog' ng-style='dialogStyle'><div class='ng-modal-close' ng-click='hideModal()'>X</div><div class='ng-modal-dialog-content' ng-transclude></div></div></div>"
+  };
+});
+
+app.controller('MyCtrl', ['$scope', function($scope) {
+  $scope.modalShown = false;
+  $scope.toggleModal = function() {
+    $scope.modalShown = !$scope.modalShown;
+  };
+}]);
+
+// var app = angular.module('main', ['ngMaterial']).controller('AppCtrl',['$scope', '$mdDialog', '$mdMedia', function($scope, $mdDialog, $mdMedia) {
+//   $scope.status = '  ';
+//     $scope.customFullscreen = $mdMedia('xs') || $mdMedia('sm');
 //   $scope.showTabDialog = function(ev) {
 //       $mdDialog.show({
 //         controller: DialogController,

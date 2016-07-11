@@ -7,8 +7,10 @@
     <script src="../vendors/angular-material.js" charset="utf-8"></script>
 
     <script src="../vendors/daypilot-all.min.js" charset="utf-8"></script>
+    <script src="../vendors/daypilot-modal-2.5.js" charset="utf-8"></script>
     <script src="../scripts/script.js" charset="utf-8"></script>
     <link rel="stylesheet" href="../styles/ltop.css" media="screen" title="no title" charset="utf-8">
+<link rel="stylesheet" href="../style/style.css" media="screen" title="no title" charset="utf-8">
     <script>
 
 </script>
@@ -20,12 +22,22 @@
 
     <div ng-controller="CalendarCtrl">
       <daypilot-calendar ng-click="showTabDialog($event)" id="dp" config="config" events="events" >Calender here</daypilot-calendar>
-<div ng-controller="AppCtrl">
-  New event:
-      <button ng-click="add()">Add</button>
+<!-- <div ng-controller="AppCtrl" class="md-padding" id="popupContainer" ng-cloak> -->
+  <!-- New event: -->
+      <!-- <button ng-click="add()">Add</button>
       <md-button class="md-primary md-raised" ng-click="showTabDialog($event)" >
       Tab Dialog
     </md-button>
+</div> -->
+<div ng-controller="MyCtrl">
+    <button ng-click='toggleModal()'>Open Modal Dialog</button>
+<modal-dialog show='modalShown' width='750px' height='60%'>
+  <p>Modal Content Goes here<p>
+</modal-dialog>
+</div>
+ <div >
+  New event:
+      <button ng-click="add()">Add</button>
 </div>
 <div>
       First event:
@@ -46,4 +58,4 @@
     </div>
 
   </body>
-</html>
+</html> -->
