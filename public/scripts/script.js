@@ -15,24 +15,31 @@ app.controller('CalendarCtrl', function($scope) {
               text: "First Event"
         }
       ];
+var startInput = $scope.start;
+var endInput = $scope.start;
 
+// var startDate = startInput.toString();
+// var endDate = endInput.toString();
       $scope.config = {
           viewType: "Week",
 //startDate: "today" ///figure out how to make that the same day
       };
-      $scope.add = function() {
+      this.add = function() {
+        console.log(this.start, this.end);
           $scope.events.push(
                   {
-                      start: new DayPilot.Date("2016-07-11T10:00:00"),
+                      // start: new DayPilot.Date("2016-07-11T10:00:00"),
+                      start: new DayPilot.Date(this.start + "T10:00:00"),
                       // start: new DayPilot.Date.today("T12:00:00"),
-                      end: new DayPilot.Date("2016-07-11T12:00:00"),
+                      // end: new DayPilot.Date("2016-07-11T12:00:00"),
+                      end: new DayPilot.Date(this.end + "T12:00:00"),
                       // end: new DayPilot.Date.today("T14:00:00"),//find way to include time in today
                       id: DayPilot.guid(),
-                      text: "Simple Event"
+                      text: this.selectData
                   }
           );
       };
-      $scope.showTabDialog = function(ev) {
+      this.showTabDialog = function(ev) {
           $mdDialog.show({
             controller: DialogController,
             templateUrl: 'tabDialog.tmpl.html',
@@ -46,17 +53,17 @@ app.controller('CalendarCtrl', function($scope) {
                 $scope.status = 'You cancelled the dialog.';
               });
         };
-      $scope.move = function() {
+      this.move = function() {
           var event = $scope.events[0];
           event.start = event.start.addDays(1);
           event.end = event.end.addDays(1);
       };
 
-      $scope.rename = function() {
+      this.rename = function() {
           $scope.events[0].text = "New name";
       };
 
-      $scope.message = function() {
+      this.message = function() {
           $scope.dp.message("Hi");
       };
 

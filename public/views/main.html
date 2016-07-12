@@ -20,7 +20,7 @@
 
 
 
-    <div ng-controller="CalendarCtrl">
+    <div ng-controller="CalendarCtrl as calendar">
       <daypilot-calendar ng-click="showTabDialog($event)" id="dp" config="config" events="events" >Calender here</daypilot-calendar>
 <!-- <div ng-controller="AppCtrl" class="md-padding" id="popupContainer" ng-cloak> -->
   <!-- New event: -->
@@ -30,23 +30,40 @@
     </md-button>
 </div> -->
 <div ng-controller="MyCtrl">
-    <button ng-click='toggleModal()'>Open Modal Dialog</button>
+    <button ng-click='toggleModal()'>Add New Workout</button>
 <modal-dialog show='modalShown' width='750px' height='60%'>
-  <p>Modal Content Goes here<p>
+  <p>Add New Workout<p>
+    <form class="" action="index.html" method="post">
+
+  {{start}}{{end}}
+  <input type="text" name="name" ng-model="calendar.start" placeholder="Start yyyy-MM-dd"value="">
+  <input type="text" name="name" ng-model="calendar.end" placeholder="End yyyy-MM-dd"value="">
+  <select class="" ng-model="calendar.selectData" name="typeSelect">
+    <option value="Cardio">Cardio</option>
+    <option value="Strength">Strength</option>
+    <option value="Dynamic/Combination">Dynamic/Combination</option>
+
+  </select>
+
+    </form>
+    <div >
+     New event:
+         <button ng-click="calendar.add()">Add</button>
+    </div>
 </modal-dialog>
 </div>
- <div >
+ <!-- <div >
   New event:
       <button ng-click="add()">Add</button>
-</div>
+</div> -->
 <div>
       First event:
-      <button ng-click="move()">Move</button>
-      <button ng-click="rename()">Rename</button>
+      <button ng-click="calendar.move()">Move</button>
+      <button ng-click="calendar.rename()">Rename</button>
   </div>
   <div>
       Object:
-      <button ng-click="message()">Show Message</button>
+      <button ng-click="calendar.message()">Show Message</button>
   </div>
   <div>
       Events array (debug):
