@@ -39,9 +39,62 @@
     <form class="" action="index.html" method="post">
 
   {{start}}{{end}}
+  <!-- //stretch= put in calendar select for day -->
   <input type="text" name="name" ng-model="calendar.start" placeholder="Start yyyy-MM-dd"value="">
   <input type="text" name="name" ng-model="calendar.end" placeholder="End yyyy-MM-dd"value="">
+<label for="timeStartHour">Start Time</label>
+  <select ng-model="calendar.timeStartHour" name="timeStartHour" value="">
+    <option value="07">7 am</option>
+    <option value="08">8 am</option>
+    <option value="09">9 am</option>
+    <option value="10">10 am</option>
+    <option value="11">11 am</option>
+    <option value="12">12 pm</option>
+    <option value="13">1 pm</option>
+    <option value="14">2 pm</option>
+    <option value="15">3 pm</option>
+    <option value="16">4 pm</option>
+    <option value="17">5 pm</option>
+    <option value="18">6 pm</option>
+    <option value="19">7 pm</option>
+    <option value="20">8 pm</option>
+  </select>
+  <select ng-model="calendar.timeStartMin" name="timeStartMin" value="">
+    <option value="00">0</option>
 
+    <option value="10">10</option>
+    <option value="15">15</option>
+    <option value="30">30</option>
+    <option value="45">45</option>
+    <option value="50">50</option>
+  </select>
+  <label for="timeEndHour">End Time</label>
+
+  <select ng-model="calendar.timeEndHour" name="timeEndHour" value="">
+    <option value="07">7 am</option>
+    <option value="08">8 am</option>
+    <option value="09">9 am</option>
+    <option value="10">10 am</option>
+    <option value="11">11 am</option>
+    <option value="12">12 pm</option>
+    <option value="13">1 pm</option>
+    <option value="14">2 pm</option>
+    <option value="15">3 pm</option>
+    <option value="16">4 pm</option>
+    <option value="17">5 pm</option>
+    <option value="18">6 pm</option>
+    <option value="19">7 pm</option>
+    <option value="20">8 pm</option>
+  </select>
+  <select ng-model="calendar.timeEndMin" name="timeEndMin" value="">
+    <option value="00">0</option>
+
+    <option value="10">10</option>
+    <option value="15">15</option>
+    <option value="30">30</option>
+    <option value="45">45</option>
+    <option value="50">50</option>
+  </select>
     <!-- <option value="Cardio">Cardio</option>
     <option value="Strength">Strength</option>
     <option value="Dynamic/Combination">Dynamic/Combination</option> -->

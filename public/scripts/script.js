@@ -32,13 +32,13 @@ app.controller('CalendarCtrl', function($scope) {
           $scope.events.push(
                   {
                       // start: new DayPilot.Date("2016-07-11T10:00:00"),
-                      start: new DayPilot.Date(this.start + "T10:00:00"),
+                      start: new DayPilot.Date(this.start + "T" + this.timeStartHour + ":" + this.timeStartMin + ":00"),
                       // start: new DayPilot.Date.today("T12:00:00"),
                       // end: new DayPilot.Date("2016-07-11T12:00:00"),
-                      end: new DayPilot.Date(this.end + "T12:00:00"),
+                      end: new DayPilot.Date(this.end + "T" + this.timeEndHour + ":" + this.timeEndMin + ":00"),
                       // end: new DayPilot.Date.today("T14:00:00"),//find way to include time in today
                       id: DayPilot.guid(),
-                      text: this.selectData + ":<br> Notes: " + this.notes + "<br>" + this.selectData2 + ":<br> Notes: " + this.notes2 + "<br>" + this.selectData3 + ":<br> Notes: " + this.notes3
+                      text: this.selectData + "<br> Notes: " + this.notes + "<br>" + this.selectData2 + "<br> Notes: " + this.notes2 + "<br>" + this.selectData3 + "<br> Notes: " + this.notes3
                   }
           );
       };
