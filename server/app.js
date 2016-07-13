@@ -6,11 +6,38 @@ var passport = require('passport');
 var path = require('path');
 // This is the file we created in step 2.
 // This will configure Passport to use Auth0
-var strategy = require('../setup-passport');
-
 // Session and cookies middlewares to keep user logged in
 var cookieParser = require('cookie-parser');
 var session = require('express-session');
+var strategy = require('../setup-passport');
+var mongoose = require('mongoose');
+mongoose.connect('localhost:27017/CalendarEvents');
+
+var eventSchema = new mongoose.Schema({
+  start: String,
+  end: String,
+  id: String,
+  text: String,
+});
+var ourModel = mongoose.model('ourModel', eventSchema);
+app.get('/getEvents', function (req,res){
+  ourModel.find()
+  .then(function (data) {
+    res.send(data);
+  });
+});//end get
+
+app.post('/testPost', function (req, res) {
+  console.log("req.body.start time" + req.body.start);
+  // var eventToAdd={
+  //   start: req.body.start + "T" + req.body.timeStartHour + ":" + req.body.timeStartMin + ":00",
+  //   end: req.body.end + "T" + req.body.timeEndHour + ":" + req.body.timeEndMin + ":00",
+  //   text: req.body.selectData + "<br> Notes: " + req.body.notes + "<br>" + req.body.selectData2 + "<br> Notes: " + req.body.notes2 + "<br>" + req.body.selectData3 + "<br> Notes: " + req.body.notes3
+  // };
+  // var newEvent=ourModel(EventToAdd);
+  // newEvent.save();
+
+});
 app.use(cookieParser());
 // See express session docs for information on the options: https://github.com/expressjs/session
 app.use(session({ secret: 'c2QOfPozJgj4JYNhLYWQD0sdaoAVpfBlya4EP5cjJik5tiYaaPhhWg7bPxO2zILj', resave: false,  saveUninitialized: false }));

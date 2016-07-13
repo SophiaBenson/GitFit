@@ -8,9 +8,10 @@ $(document).ready(function(){
 
 });
 var app = angular.module('main', ['daypilot']);
-app.controller('CalendarCtrl', function($scope) {
+app.controller('CalendarCtrl', function($scope, $http) {
 //set up events
-      $scope.events = [
+
+  $scope.events = [
         {
               // start: new DayPilot.Date("2016-07-08T10:00:00"),
               start: new DayPilot.Date.today("T14:00:00"),
@@ -20,7 +21,7 @@ app.controller('CalendarCtrl', function($scope) {
               text: "First Event"
         }
       ];
-
+var events = $scope.events;
 // var startDate = startInput.toString();
 // var endDate = endInput.toString();
       $scope.config = {
@@ -41,6 +42,14 @@ app.controller('CalendarCtrl', function($scope) {
                       text: this.selectData + "<br> Notes: " + this.notes + "<br>" + this.selectData2 + "<br> Notes: " + this.notes2 + "<br>" + this.selectData3 + "<br> Notes: " + this.notes3
                   }
           );
+          this.start="";
+          this.timeStartHour="";
+          this.timeStartMin="";
+          this.end="";
+          this.timeEndHour="";
+          this.timeEndMin="";
+
+
       };
       this.showTabDialog = function(ev) {
           $mdDialog.show({
@@ -62,17 +71,45 @@ app.controller('CalendarCtrl', function($scope) {
           event.end = event.end.addDays(1);
       };
 
-      this.rename = function() {
-          $scope.events[0].text = "New name";
-      };
+      // this.rename = function() {
+      //     $scope.events[0].text = "New name";
+      // };
 
-      this.message = function() {
-          $scope.dp.message("Hi");
-      };
+      // this.message = function() {
+      //     $scope.dp.message("Hi");
+      // };
 
-      // var modal = new DayPilot.Modal();
-      // modal.showHtml("<h1>Hello</h1>");
-      // editEvent();
+
+
+this.add = function () {
+//   var EventToSend={
+//     start: new DayPilot.Date(this.start + "T" + this.timeStartHour + ":" + this.timeStartMin + ":00"),
+//
+//     end: new DayPilot.Date(this.end + "T" + this.timeEndHour + ":" + this.timeEndMin + ":00"),
+//
+//     id: DayPilot.guid(),
+//     text: this.selectData + "<br> Notes: " + this.notes + "<br>" + this.selectData2 + "<br> Notes: " + this.notes2 + "<br>" + this.selectData3 + "<br> Notes: " + this.notes3
+// };
+console.log("add function fired off" , events);
+
+      $http({
+        method: 'POST',
+        url:'/testPost',
+        data: event
+      });
+
+};//end addEvents
+$scope.getEvents = function () {
+
+
+$http({
+    method:'GET',
+    url:'/getEvents'
+  }).then(function(response){
+    $scope.allTheEvents = response.data;
+    console.log($scope.allTheEvents);
+ });
+};//end getAnimals
 
 });//end DemoCtrl controller
 // var app = angular.module('Modal', []);
@@ -92,7 +129,7 @@ app.directive('modalDialog', function() {
       if (attrs.height)
         scope.dialogStyle.height = attrs.height;
       scope.hideModal = function() {
-        scope.show = false;
+        this.show = false;
       };
     },
     template: "<div class='ng-modal' ng-show='show'><div class='ng-modal-overlay' ng-click='hideModal()'></div><div class='ng-modal-dialog' ng-style='dialogStyle'><div class='ng-modal-close' ng-click='hideModal()'>X</div><div class='ng-modal-dialog-content' ng-transclude></div></div></div>"
