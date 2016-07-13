@@ -1,7 +1,12 @@
 console.log("script is hur");
 //store the event calendar object
 // var dp = $scope.week;
+$(document).ready(function(){
+    $(".btn-primary").click(function(){
+        $(".collapse").collapse('toggle');
+    });
 
+});
 var app = angular.module('main', ['daypilot']);
 app.controller('CalendarCtrl', function($scope) {
 //set up events
@@ -15,8 +20,6 @@ app.controller('CalendarCtrl', function($scope) {
               text: "First Event"
         }
       ];
-var startInput = $scope.start;
-var endInput = $scope.start;
 
 // var startDate = startInput.toString();
 // var endDate = endInput.toString();
@@ -35,7 +38,7 @@ var endInput = $scope.start;
                       end: new DayPilot.Date(this.end + "T12:00:00"),
                       // end: new DayPilot.Date.today("T14:00:00"),//find way to include time in today
                       id: DayPilot.guid(),
-                      text: this.selectData
+                      text: this.selectData + ":<br> Notes: " + this.notes + "<br>" + this.selectData2 + ":<br> Notes: " + this.notes2 + "<br>" + this.selectData3 + ":<br> Notes: " + this.notes3
                   }
           );
       };

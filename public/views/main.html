@@ -8,6 +8,9 @@
 
     <script src="../vendors/daypilot-all.min.js" charset="utf-8"></script>
     <script src="../vendors/daypilot-modal-2.5.js" charset="utf-8"></script>
+    <link rel="stylesheet" href="../vendors/bootstrap.min.css" media="screen" title="no title" charset="utf-8">
+    <link rel="stylesheet" href="../vendors/bootstrap.min.js" media="screen" title="no title" charset="utf-8">
+    <script src="../vendors/jquery.min.js" charset="utf-8"></script>
     <script src="../scripts/script.js" charset="utf-8"></script>
     <link rel="stylesheet" href="../styles/ltop.css" media="screen" title="no title" charset="utf-8">
 <link rel="stylesheet" href="../style/style.css" media="screen" title="no title" charset="utf-8">
@@ -31,21 +34,154 @@
 </div> -->
 <div ng-controller="MyCtrl">
     <button ng-click='toggleModal()'>Add New Workout</button>
-<modal-dialog show='modalShown' width='750px' height='60%'>
+<modal-dialog show='modalShown' width='750px' height='70%'>
   <p>Add New Workout<p>
     <form class="" action="index.html" method="post">
 
   {{start}}{{end}}
   <input type="text" name="name" ng-model="calendar.start" placeholder="Start yyyy-MM-dd"value="">
   <input type="text" name="name" ng-model="calendar.end" placeholder="End yyyy-MM-dd"value="">
-  <select class="" ng-model="calendar.selectData" name="typeSelect">
-    <option value="Cardio">Cardio</option>
-    <option value="Strength">Strength</option>
-    <option value="Dynamic/Combination">Dynamic/Combination</option>
 
+    <!-- <option value="Cardio">Cardio</option>
+    <option value="Strength">Strength</option>
+    <option value="Dynamic/Combination">Dynamic/Combination</option> -->
+<!-- <div>
+  <input type="radio" name="Cardio" id="Cardio"value="">
+  <label for="Cardio">Cardio</label>
+  <div class="sub1">
+    <div>
+      <input type="radio" name="Running" id="Running" value="">
+      <label for="Running">Running</label>
+    </div>
+    <div>
+      <input type="radio" name="Swimming" id="Swimming" value="">
+      <label for="Swimming">Swimming</label>
+    </div>
+    <div>
+      <input type="radio" name="Biking" id="Biking" value="">
+      <label for="Biking">Biking</label>
+    </div>
+    <div>
+      <input type="radio" name="Other" id="Other" value="">
+      <label for="Other">Other</label>
+    </div>
+
+  </div>
+</div> -->
+<br>
+<label for="typeSelect">Select Type</label>
+<select class="" ng-model="calendar.selectData" placeholder="Select Type" id="typeSelect"name="typeSelect">
+<optgroup label="Cardio" value="Cardio">
+  <option value="Running">Running</option>
+  <option value="Swimming">Swimming</option>
+  <option value="Biking">Biking</option>
+  <option value="Other">Other</option>
+</optgroup>
+<optgroup label="Strength" value="Strength">
+  <option value="Upper Body">Upper Body</option>
+  <option value="Lower Body">Lower Body</option>
+  <option value="Core">Core</option>
+  <option value="Other">Other</option>
+</optgroup>
+<optgroup label="Dynamic/Combination" value="Dynamic/Combination">
+  <option value="Yoga">Yoga</option>
+  <option value="Aerobic">Aerobic</option>
+  <option value="Fitness Class">Fitness Class</option>
+  <option value="Other">Other</option>
+</optgroup>
   </select>
+  <input type="box" name="name" ng-model="calendar.notes" placeholder="Notes"value="">
+<br>
+<label for="typeSelect2">Select Another</label>
+
+<select class="" ng-model="calendar.selectData2" placeholder="Select Another" id="typeSelect2" name="typeSelect2">
+<optgroup label="Cardio" value="Cardio">
+<option value="Running">Running</option>
+<option value="Swimming">Swimming</option>
+<option value="Biking">Biking</option>
+<option value="Other">Other</option>
+</optgroup>
+<optgroup label="Strength" value="Strength">
+<option value="Upper Body">Upper Body</option>
+<option value="Lower Body">Lower Body</option>
+<option value="Core">Core</option>
+<option value="Other">Other</option>
+</optgroup>
+<optgroup label="Dynamic/Combination" value="Dynamic/Combination">
+<option value="Yoga">Yoga</option>
+<option value="Aerobic">Aerobic</option>
+<option value="Fitness Class">Fitness Class</option>
+<option value="Other">Other</option>
+</optgroup>
+</select>
+<input type="box" name="name2" ng-model="calendar.notes2" placeholder="Notes"value="">
+</form>
+<br>
+<label for="typeSelect3">Select Another</label>
+
+<select class="" ng-model="calendar.selectData3" placeholder="Select Another" id="typeSelect3" name="typeSelect3">
+<optgroup label="Cardio" value="Cardio">
+<option value="Running">Running</option>
+<option value="Swimming">Swimming</option>
+<option value="Biking">Biking</option>
+<option value="Other">Other</option>
+</optgroup>
+<optgroup label="Strength" value="Strength">
+<option value="Upper Body">Upper Body</option>
+<option value="Lower Body">Lower Body</option>
+<option value="Core">Core</option>
+<option value="Other">Other</option>
+</optgroup>
+<optgroup label="Dynamic/Combination" value="Dynamic/Combination">
+<option value="Yoga">Yoga</option>
+<option value="Aerobic">Aerobic</option>
+<option value="Fitness Class">Fitness Class</option>
+<option value="Other">Other</option>
+</optgroup>
+</select>
+<input type="box" name="name3" ng-model="calendar.notes3" placeholder="Notes"value="">
+</form>
+<!-- //attempt at collapsable section for addition selects.
+<div class="container">
+<button type="button" class="btn btn-primary">Select Another</button>
+<div class="collapse">
+  <form class="" action="index.html" method="post">
+  <label for="typeSelect2">Select Another</label>
+
+  <select class="" ng-model="calendar.selectData2" placeholder="Select Another" id="typeSelect2" name="typeSelect2">
+  <optgroup label="Cardio" value="Cardio">
+  <option value="Running">Running</option>
+  <option value="Swimming">Swimming</option>
+  <option value="Biking">Biking</option>
+  <option value="Other">Other</option>
+  </optgroup>
+  <optgroup label="Strength" value="Strength">
+  <option value="Upper Body">Upper Body</option>
+  <option value="Lower Body">Lower Body</option>
+  <option value="Core">Core</option>
+  <option value="Other">Other</option>
+  </optgroup>
+  <optgroup label="Dynamic/Combination" value="Dynamic/Combination">
+  <option value="Yoga">Yoga</option>
+  <option value="Aerobic">Aerobic</option>
+  <option value="Fitness Class">Fitness Class</option>
+  <option value="Other">Other</option>
+  </optgroup>
+  </select>
+  <input type="box" name="name2" ng-model="calendar.notes2" placeholder="Notes"value="">
+</form>
+</div>
+</div> -->
 
     </form>
+    <!-- <script>
+$(document).ready(function(){
+    $(".btn-primary").click(function(){
+        $(".collapse").collapse('toggle');
+    });
+
+});
+</script> -->
     <div >
      New event:
          <button ng-click="calendar.add()">Add</button>
