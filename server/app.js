@@ -1,6 +1,7 @@
 var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
+
 var session = require('express-session');
 var passport = require('passport');
 var path = require('path');
@@ -12,7 +13,7 @@ var session = require('express-session');
 var strategy = require('../setup-passport');
 var mongoose = require('mongoose');
 mongoose.connect('localhost:27017/CalendarEvents');
-
+app.use(bodyParser.json());
 var eventSchema = new mongoose.Schema({
   start: String,
   end: String,
@@ -21,6 +22,7 @@ var eventSchema = new mongoose.Schema({
 });
 var ourModel = mongoose.model('ourModel', eventSchema);
 app.get('/getEvents', function (req,res){
+  console.log("getting events");
   ourModel.find()
   .then(function (data) {
     res.send(data);
@@ -28,14 +30,15 @@ app.get('/getEvents', function (req,res){
 });//end get
 
 app.post('/testPost', function (req, res) {
-  console.log("req.body.start time" + req.body.start);
-  // var eventToAdd={
-  //   start: req.body.start + "T" + req.body.timeStartHour + ":" + req.body.timeStartMin + ":00",
-  //   end: req.body.end + "T" + req.body.timeEndHour + ":" + req.body.timeEndMin + ":00",
-  //   text: req.body.selectData + "<br> Notes: " + req.body.notes + "<br>" + req.body.selectData2 + "<br> Notes: " + req.body.notes2 + "<br>" + req.body.selectData3 + "<br> Notes: " + req.body.notes3
-  // };
-  // var newEvent=ourModel(EventToAdd);
-  // newEvent.save();
+  console.log("req.body.start time");
+  console.dir(req.body[0].start);
+  var eventToAdd={
+    start: req.body.start + "T" + req.body.timeStartHour + ":" + req.body.timeStartMin + ":00",
+    end: req.body.end + "T" + req.body.timeEndHour + ":" + req.body.timeEndMin + ":00",
+    text: req.body.selectData + "<br> Notes: " + req.body.notes + "<br>" + req.body.selectData2 + "<br> Notes: " + req.body.notes2 + "<br>" + req.body.selectData3 + "<br> Notes: " + req.body.notes3
+  };
+  var newEvent=ourModel(eventToAdd);
+  newEvent.save();
 
 });
 app.use(cookieParser());

@@ -12,34 +12,59 @@ app.controller('CalendarCtrl', function($scope, $http) {
 //set up events
 
   $scope.events = [
-        {
-              // start: new DayPilot.Date("2016-07-08T10:00:00"),
-              start: new DayPilot.Date.today("T14:00:00"),
-              // end: new DayPilot.Date("2016-07-08T14:00:00"),
-              end: new DayPilot.Date.today("T16:00:00"),
-              id: DayPilot.guid(),
-              text: "First Event"
-        }
+        // {
+        //       // start: new DayPilot.Date("2016-07-08T10:00:00"),
+        //       "start": new DayPilot.Date("2016-07-11T08:00:00"),
+        //       // "start":"2016-07-11T08:00:00",
+        //       // end: new DayPilot.Date("2016-07-08T14:00:00"),
+        //       "end": new DayPilot.Date("2016-07-11T12:00:00"),
+        //       // "end": "2016-07-11T15:00:00"
+        //       "id": DayPilot.guid(),
+        //       "text": "Work"
+        // },
+        // {
+        //
+        //       "start": new DayPilot.Date("2016-07-11T13:00:00"),
+        //       "end": new DayPilot.Date("2016-07-11T17:00:00"),
+        //       "id": DayPilot.guid(),
+        //       "text": "Work"
+        // }
       ];
-var events = $scope.events;
-// var startDate = startInput.toString();
-// var endDate = endInput.toString();
+
+
       $scope.config = {
           viewType: "Week",
-//startDate: "today" ///figure out how to make that the same day
+
       };
+      this.previous = function () {
+        DayPilot.startDate = DayPilot.startDate.addDays(-7); DayPilot.update();
+DayPilot.init();
+      };
+      // var dp = new DayPilot.Calendar("dp");
+      // dp.viewType = "Week";
+      // this.previous = function (){
+      //   dp.startDate = dp.startDate.addDays(-7); dp.update();
+      // };
+      // this.next = function() {
+      // dp.startDate = dp.startDate.addDays(7); dp.update();
+      // };
+      // // ...
+      // dp.init();
+
       this.add = function() {
         console.log(this.start, this.end);
+event.preventDefault();
           $scope.events.push(
                   {
                       // start: new DayPilot.Date("2016-07-11T10:00:00"),
-                      start: new DayPilot.Date(this.start + "T" + this.timeStartHour + ":" + this.timeStartMin + ":00"),
-                      // start: new DayPilot.Date.today("T12:00:00"),
+                      "start": new DayPilot.Date(this.start + "T" + this.timeStartHour + ":" + this.timeStartMin + ":00"),
+                      // "start": "2016-07-14T12:00:00",
                       // end: new DayPilot.Date("2016-07-11T12:00:00"),
-                      end: new DayPilot.Date(this.end + "T" + this.timeEndHour + ":" + this.timeEndMin + ":00"),
+                      "end": new DayPilot.Date(this.end + "T" + this.timeEndHour + ":" + this.timeEndMin + ":00"),
                       // end: new DayPilot.Date.today("T14:00:00"),//find way to include time in today
-                      id: DayPilot.guid(),
-                      text: this.selectData + "<br> Notes: " + this.notes + "<br>" + this.selectData2 + "<br> Notes: " + this.notes2 + "<br>" + this.selectData3 + "<br> Notes: " + this.notes3
+                      // "end": "2016-07-14T14:00:00"
+                      "id": DayPilot.guid(),
+                      "text": this.selectData + "<br> Notes: " + this.notes + "<br>" + this.selectData2 + "<br> Notes: " + this.notes2 + "<br>" + this.selectData3 + "<br> Notes: " + this.notes3
                   }
           );
           this.start="";
@@ -49,8 +74,18 @@ var events = $scope.events;
           this.timeEndHour="";
           this.timeEndMin="";
 
+          console.log("add function fired off" , events);
+          var events = $scope.events;
+          console.log(events);
+                $http({
+                  method: 'POST',
+                  url:'/testPost',
+                  data: events
+                });
 
-      };
+          };//end addEvents
+
+
       this.showTabDialog = function(ev) {
           $mdDialog.show({
             controller: DialogController,
@@ -71,6 +106,9 @@ var events = $scope.events;
           event.end = event.end.addDays(1);
       };
 
+
+
+
       // this.rename = function() {
       //     $scope.events[0].text = "New name";
       // };
@@ -81,7 +119,7 @@ var events = $scope.events;
 
 
 
-this.add = function () {
+// this.add = function () {
 //   var EventToSend={
 //     start: new DayPilot.Date(this.start + "T" + this.timeStartHour + ":" + this.timeStartMin + ":00"),
 //
@@ -90,15 +128,16 @@ this.add = function () {
 //     id: DayPilot.guid(),
 //     text: this.selectData + "<br> Notes: " + this.notes + "<br>" + this.selectData2 + "<br> Notes: " + this.notes2 + "<br>" + this.selectData3 + "<br> Notes: " + this.notes3
 // };
-console.log("add function fired off" , events);
-
-      $http({
-        method: 'POST',
-        url:'/testPost',
-        data: event
-      });
-
-};//end addEvents
+// console.log("add function fired off" , events);
+// var events = $scope.events;
+// console.log(events);
+//       $http({
+//         method: 'POST',
+//         url:'/testPost',
+//         data: events
+//       });
+//
+// };//end addEvents
 $scope.getEvents = function () {
 
 
@@ -138,8 +177,12 @@ app.directive('modalDialog', function() {
 
 app.controller('MyCtrl', ['$scope', function($scope) {
   $scope.modalShown = false;
+  $scope.modalShown2 = false;
   $scope.toggleModal = function() {
     $scope.modalShown = !$scope.modalShown;
+  };
+  $scope.toggleModal2 = function() {
+    $scope.modalShown2 = !$scope.modalShown2;
   };
 }]);
 
