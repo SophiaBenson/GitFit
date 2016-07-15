@@ -54,7 +54,7 @@ DayPilot.init();
       this.add = function() {
         console.log(this.start, this.end);
 event.preventDefault();
-          $scope.events.push(
+          var newEvent =
                   {
                       // start: new DayPilot.Date("2016-07-11T10:00:00"),
                       "start": new DayPilot.Date(this.start + "T" + this.timeStartHour + ":" + this.timeStartMin + ":00"),
@@ -65,8 +65,8 @@ event.preventDefault();
                       // "end": "2016-07-14T14:00:00"
                       "id": DayPilot.guid(),
                       "text": this.selectData + "<br> Notes: " + this.notes + "<br>" + this.selectData2 + "<br> Notes: " + this.notes2 + "<br>" + this.selectData3 + "<br> Notes: " + this.notes3
-                  }
-          );
+                  };
+
           this.start="";
           this.timeStartHour="";
           this.timeStartMin="";
@@ -74,13 +74,19 @@ event.preventDefault();
           this.timeEndHour="";
           this.timeEndMin="";
 
-          console.log("add function fired off" , events);
-          var events = $scope.events;
-          console.log(events);
+          console.log("add function fired off" , newEvent);
+          // var events = $scope.events;
+
                 $http({
                   method: 'POST',
                   url:'/testPost',
-                  data: events
+                  data: newEvent
+                }).then(function (response) {
+                  console.log("in .then of testPost");
+                  getAllEvents();
+
+                },function (response) {
+                  console.log("err");
                 });
 
           };//end addEvents
@@ -138,20 +144,23 @@ event.preventDefault();
 //       });
 //
 // };//end addEvents
+var getAllEvents = function () {
+  $http({
+      method:'GET',
+      url:'/getEvents'
+    }).then(function(response){
+      $scope.events = response.data;
+      console.log("in getAllEvents:", $scope.events);
+   });
+};
 $scope.getEvents = function () {
 
+  getAllEvents();
 
-$http({
-    method:'GET',
-    url:'/getEvents'
-  }).then(function(response){
-    $scope.events = response.data;
-    console.log($scope.events);
- });
-};//end getAnimals
+};//end getevents
 
 });//end DemoCtrl controller
-// var app = angular.module('Modal', []);
+
 
 app.directive('modalDialog', function() {
   return {

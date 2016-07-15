@@ -35,9 +35,9 @@ app.post('/testPost', function (req, res) {
 
   // var stringStart = req.body.start
   var eventToAdd={
-    start: req.body[0].start,
-    end: req.body[0].end,
-    text: req.body[0].text
+    start: req.body.start,
+    end: req.body.end,
+    text: req.body.text
   };
   console.log(eventToAdd);
   // + "T" + req.body[0].timeStartHour + ":" + req.body[0].timeStartMin + ":00",
@@ -45,6 +45,7 @@ app.post('/testPost', function (req, res) {
   // + "<br> Notes: " + req.body[0].notes + "<br>" + req.body[0].selectData2 + "<br> Notes: " + req.body[0].notes2 + "<br>" + req.body[0].selectData3 + "<br> Notes: " + req.body[0].notes3
   var newEvent=ourModel(eventToAdd);
   newEvent.save();
+  res.sendStatus(200);
 
 });
 app.use(cookieParser());
