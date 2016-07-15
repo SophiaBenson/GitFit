@@ -31,12 +31,18 @@ app.get('/getEvents', function (req,res){
 
 app.post('/testPost', function (req, res) {
   console.log("req.body.start time");
-  console.dir(req.body[0].start);
+  console.dir(req.body);
+
+  // var stringStart = req.body.start
   var eventToAdd={
-    start: req.body.start + "T" + req.body.timeStartHour + ":" + req.body.timeStartMin + ":00",
-    end: req.body.end + "T" + req.body.timeEndHour + ":" + req.body.timeEndMin + ":00",
-    text: req.body.selectData + "<br> Notes: " + req.body.notes + "<br>" + req.body.selectData2 + "<br> Notes: " + req.body.notes2 + "<br>" + req.body.selectData3 + "<br> Notes: " + req.body.notes3
+    start: req.body[0].start,
+    end: req.body[0].end,
+    text: req.body[0].text
   };
+  console.log(eventToAdd);
+  // + "T" + req.body[0].timeStartHour + ":" + req.body[0].timeStartMin + ":00",
+  //  + "T" + req.body[0].timeEndHour + ":" + req.body[0].timeEndMin + ":00"
+  // + "<br> Notes: " + req.body[0].notes + "<br>" + req.body[0].selectData2 + "<br> Notes: " + req.body[0].notes2 + "<br>" + req.body[0].selectData3 + "<br> Notes: " + req.body[0].notes3
   var newEvent=ourModel(eventToAdd);
   newEvent.save();
 

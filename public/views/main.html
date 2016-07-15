@@ -23,7 +23,7 @@
 
 
 
-    <div ng-controller="CalendarCtrl as calendar">
+    <div ng-controller="CalendarCtrl as calendar" ng-init="getEvents()">
       <daypilot-calendar ng-click="showTabDialog($event)" id="dp" config="config" events="events" >Calender here</daypilot-calendar>
 <!-- <div ng-controller="AppCtrl" class="md-padding" id="popupContainer" ng-cloak> -->
   <!-- New event: -->
@@ -248,6 +248,7 @@ $(document).ready(function(){
      New event:
          <button  ng-click="calendar.add()">Add</button>
     </div>
+    <a href="mailto:benso898@umn.edu">Alert Me!</a>
 </modal-dialog>
 
 <!-- //schedule adder modal -->

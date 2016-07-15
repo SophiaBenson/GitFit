@@ -145,8 +145,8 @@ $http({
     method:'GET',
     url:'/getEvents'
   }).then(function(response){
-    $scope.allTheEvents = response.data;
-    console.log($scope.allTheEvents);
+    $scope.events = response.data;
+    console.log($scope.events);
  });
 };//end getAnimals
 
