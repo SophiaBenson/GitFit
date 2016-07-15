@@ -1,13 +1,9 @@
 var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
-
 var session = require('express-session');
 var passport = require('passport');
 var path = require('path');
-// This is the file we created in step 2.
-// This will configure Passport to use Auth0
-// Session and cookies middlewares to keep user logged in
 var cookieParser = require('cookie-parser');
 var session = require('express-session');
 var strategy = require('../setup-passport');
@@ -33,16 +29,13 @@ app.post('/testPost', function (req, res) {
   console.log("req.body.start time");
   console.dir(req.body);
 
-  // var stringStart = req.body.start
   var eventToAdd={
     start: req.body.start,
     end: req.body.end,
     text: req.body.text
   };
   console.log(eventToAdd);
-  // + "T" + req.body[0].timeStartHour + ":" + req.body[0].timeStartMin + ":00",
-  //  + "T" + req.body[0].timeEndHour + ":" + req.body[0].timeEndMin + ":00"
-  // + "<br> Notes: " + req.body[0].notes + "<br>" + req.body[0].selectData2 + "<br> Notes: " + req.body[0].notes2 + "<br>" + req.body[0].selectData3 + "<br> Notes: " + req.body[0].notes3
+
   var newEvent=ourModel(eventToAdd);
   newEvent.save();
   res.sendStatus(200);
@@ -74,13 +67,6 @@ app.get('/callback',
 
 app.use(bodyParser.urlencoded({extended: true}));
 
-// app.use(session({
-//   secret: 'any string',
-//   key: 'user',
-//   resave: 'true',
-//   saveUninitialized: false,
-//   cookie: {maxage: 60000, secure: false}
-// }));//end app.use
 
 //passport
 app.use(passport.initialize());
