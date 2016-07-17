@@ -48,3 +48,34 @@
     display: block;
     margin-left: 40px;
 }
+.navbar {
+  /*background-color: #63585e;*/
+}
+
+.workoutbtn {
+background-color: #63585e;
+color: white;
+padding-top: 15px;
+padding-bottom: 15px;
+padding-left: 5px;
+padding-right: 5px;
+}
+.workoutbtn:hover{
+  background-color: #00b7c5;
+
+}
+.schedulebtn{
+  background-color: #63585e;
+  color: white;
+  padding-top: 15px;
+padding-bottom: 15px;
+padding-left: 15px;
+padding-right: 15px;
+}
+.schedulebtn:hover {
+  background-color: #00b7c5;
+
+}
+body{
+  background-color: #eaf1f4;
+}

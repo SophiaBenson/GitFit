@@ -20,18 +20,28 @@ app.controller('CalendarCtrl', function($scope, $http) {
         DayPilot.init();
       };
 
-      this.add = function() {
+    this.add = function() {
         console.log(this.start, this.end);
           event.preventDefault();
+
+            if(this.selectData2 === undefined){
+              this.selectData2 = "";
+            }
+            if(this.selectData3 === undefined){
+              this.selectData3 = "";
+            }
+            if(this.notes2 === undefined){
+              this.notes2 = "";
+            }
+            if(this.notes3 === undefined){
+              this.notes3 = "";
+            }
+
+
           var newEvent =
                   {
-                      // start: new DayPilot.Date("2016-07-11T10:00:00"),
                       "start": new DayPilot.Date(this.start + "T" + this.timeStartHour + ":" + this.timeStartMin + ":00"),
-                      // "start": "2016-07-14T12:00:00",
-                      // end: new DayPilot.Date("2016-07-11T12:00:00"),
                       "end": new DayPilot.Date(this.end + "T" + this.timeEndHour + ":" + this.timeEndMin + ":00"),
-                      // end: new DayPilot.Date.today("T14:00:00"),//find way to include time in today
-                      // "end": "2016-07-14T14:00:00"
                       "id": DayPilot.guid(),
                       "text": this.selectData + "<br> Notes: " + this.notes + "<br>" + this.selectData2 + "<br> Notes: " + this.notes2 + "<br>" + this.selectData3 + "<br> Notes: " + this.notes3
                   };

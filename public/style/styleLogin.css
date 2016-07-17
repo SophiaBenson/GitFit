@@ -1,0 +1,17 @@
+body{
+  background-image: url('../views/healthy-light-woman-legs.jpg');
+background-size: 100%;
+}
+
+.container{
+  position: fixed;
+  text-align: center;
+  top: 50%;
+  left: 25%;
+  transform: translate(-50%, -50%);
+}
+
+.btn {
+  text-align: center;
+  background-color: #00b7c5;
+}
