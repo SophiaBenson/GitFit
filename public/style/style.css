@@ -79,3 +79,26 @@ padding-right: 15px;
 body{
   background-color: #eaf1f4;
 }
+
+.savebtn1 {
+
+  text-align: center;
+}
+.savebtn2 {
+
+  text-align: center;
+}
+
+.header {
+  background-color: black;
+  color: white;
+}
+.btn1{
+  background-color: #00b7c5;
+}
+.btn2{
+  background-color: #00b7c5;
+}
+.space {
+  text-align: center;
+}

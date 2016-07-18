@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html ng-app = "main">
   <head>
     <meta charset="utf-8">
@@ -19,7 +19,7 @@
 </script>
   </head>
   <body>
-    GitFit!
+
 
 
 
@@ -35,7 +35,10 @@
 
   </nav>
 <modal-dialog show='modalShown' width='750px' height='70%'>
-  <p>Add New Workout<p>
+<header class="header">
+    <h2>Add New Workout</h2>
+</header>
+
     <form class="" action="index.html" method="post">
 
 
@@ -97,6 +100,7 @@
   </select>
 
 <br>
+<br>
 <label for="typeSelect">Select Type</label>
 <select class="" ng-model="calendar.selectData" placeholder="Select Type" id="typeSelect"name="typeSelect">
 <optgroup label="Cardio" value="Cardio">
@@ -119,6 +123,7 @@
 </optgroup>
   </select>
   <input type="box" name="name" ng-model="calendar.notes" placeholder="Notes"value="">
+<br>
 <br>
 <label for="typeSelect2">Select Another</label>
 
@@ -144,6 +149,7 @@
 </select>
 <input type="box" name="name2" ng-model="calendar.notes2" placeholder="Notes"value="">
 </form>
+<br>
 <br>
 <label for="typeSelect3">Select Another</label>
 
@@ -172,17 +178,21 @@
 
 
     </form>
+<br>
+<br>
+<br>
+    <div class="savebtn1">
 
-    <div >
-     New event:
-         <button  ng-click="calendar.add()">Add</button>
+         <button class="btn1" ng-click="calendar.add()">--save</button>
     </div>
 </modal-dialog>
 
 <!-- //schedule adder modal -->
 <!-- <button ng-click='toggleModal2()'>Add Schedule</button> -->
 <modal-dialog show='modalShown2' width='750px' height='70%'>
-<p>Add New Schedule<p>
+  <header class="header">
+<h2>Add New Schedule<h2>
+</header>
 <form class="" action="index.html" method="post">
 
 
@@ -243,6 +253,7 @@
     <option value="50">50</option>
   </select>
   <br>
+  <br>
   <label for="typeSelect">Select Type</label>
   <select ng-model="calendar.selectData" placeholder="Select" id="typeSelect" name="typeSelect">
     <option value="Work">Work</option>
@@ -251,9 +262,12 @@
     <option value="Other">Other</option>
   </select>
   <input type="text" name="notes" ng-model="calendar.notes" placeholder="notes" value="">
-  <div >
-   New event:
-       <button  ng-click="calendar.add()">Add</button>
+<br>
+<br>
+<br>
+  <div class="savebtn2">
+
+       <button class="btn2" ng-click="calendar.add()">--save</button>
   </div>
 </modal-dialog>
 
@@ -267,10 +281,10 @@ Tab Dialog
 </md-button>
 </div> -->
 <div class="space">
-Week:
-<button ng-click="previous()">Previous</button>
+<h3>GitFit!</h3>
+<!-- <button ng-click="previous()">Previous</button>
 |
-<button ng-click="next()">Next</button>
+<button ng-click="next()">Next</button> -->
 </div>
     </div>
 <!-- <div>
@@ -289,4 +303,4 @@ Week:
     </div>
 
   </body>
-</html> -->
+</html>
