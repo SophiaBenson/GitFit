@@ -15,3 +15,8 @@ background-size: 100%;
   text-align: center;
   background-color: #00b7c5;
 }
+
+.logo {
+  height: 300px;
+  width: auto;
+}

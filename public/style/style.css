@@ -53,24 +53,25 @@
 }
 
 .workoutbtn {
-background-color: #63585e;
+/*background-color: #4b484c;*/
 color: white;
-padding-top: 15px;
-padding-bottom: 15px;
+padding-top: 30px;
+padding-bottom: 30px;
 padding-left: 5px;
 padding-right: 5px;
+/*background: transparent url(../views/logoplusicon.png)no-repeat ;*/
 }
 .workoutbtn:hover{
   background-color: #00b7c5;
 
 }
 .schedulebtn{
-  background-color: #63585e;
   color: white;
-  padding-top: 15px;
-padding-bottom: 15px;
-padding-left: 15px;
-padding-right: 15px;
+  padding-top: 30px;
+padding-bottom: 30px;
+padding-left: 20px;
+padding-right: 20px;
+margin-left: 5px;
 }
 .schedulebtn:hover {
   background-color: #00b7c5;
@@ -78,6 +79,7 @@ padding-right: 15px;
 }
 body{
   background-color: #eaf1f4;
+  background: url(../views/footer_lodyas.png);
 }
 
 .savebtn1 {
@@ -101,4 +103,28 @@ body{
 }
 .space {
   text-align: center;
+}
+
+.logo {
+  height: 100px;
+  width: auto;
+}
+
+.logout{
+  color: white;
+  float: right;
+  padding-top: 20px;
+  padding-right: 10px;
+  padding-bottom: 20px;
+  padding-left: 10px;
+}
+
+.logout:hover {
+  background-color: #00b7c5;
+}
+
+.slogan {
+  text-align: center;
+  color: white;
+  padding-top: 50px;
 }

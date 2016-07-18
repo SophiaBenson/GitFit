@@ -30,9 +30,16 @@
 
 <div ng-controller="MyCtrl">
   <nav class="navbar navbar-inverse">
-    <button class="workoutbtn " ng-click='toggleModal()'>Add New Workout</button>
-    <button class="schedulebtn " ng-click='toggleModal2()'>Add Schedule</button>
+    <img src="../views/GitFit-logoIcon.png" alt="" />
+    <tab class="workoutbtn " ng-click='toggleModal()'>Add New Workout</tab>
+    <!-- <img src="../views/logoplusicon.png" alt="" /> -->
+    <tab class="schedulebtn " ng-click='toggleModal2()'>Add Schedule</tab>
 
+<div class="logout">
+  <p>
+    Logout
+  </p>
+</div>
   </nav>
 <modal-dialog show='modalShown' width='750px' height='70%'>
 <header class="header">
@@ -181,6 +188,7 @@
 <br>
 <br>
 <br>
+<a href="mailto:9526883182@tmomail.net?Subject=Workout%20Reminder">Send a Reminder!</a>
     <div class="savebtn1">
 
          <button class="btn1" ng-click="calendar.add()">--save</button>
@@ -281,10 +289,9 @@ Tab Dialog
 </md-button>
 </div> -->
 <div class="space">
-<h3>GitFit!</h3>
-<!-- <button ng-click="previous()">Previous</button>
-|
-<button ng-click="next()">Next</button> -->
+  <div class="slogan">
+    <h4>GitFit and BashFat!</h4>
+  </div>
 </div>
     </div>
 <!-- <div>
