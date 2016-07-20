@@ -8,7 +8,7 @@ var cookieParser = require('cookie-parser');
 var session = require('express-session');
 var strategy = require('../setup-passport');
 var mongoose = require('mongoose');
-mongoose.connect('localhost:27017/CalendarEvents');
+mongoose.connect('mongodb://sophiab:Purplebirdy01!@ds023465.mlab.com:23465/calendarevents');
 app.use(bodyParser.json());
 var eventSchema = new mongoose.Schema({
   start: String,
@@ -87,6 +87,6 @@ app.get('/main', function (req, res) {
 });
 
 //spin up server
-app.listen(3000, function () {
+app.listen(process.env.PORT || 3000, function () {
   console.log("server is listening on port 3000");
 });
